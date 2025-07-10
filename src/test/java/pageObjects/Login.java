@@ -199,6 +199,8 @@ public class Login extends BasePage {
         List<WebElement> options = wait.until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//ul//li[@role='option']"))
         );
+        Thread.sleep(500);
+
         if (!options.isEmpty()) {
             Random rand1 = new Random();
             int randomIndex = rand1.nextInt(options.size());
@@ -207,10 +209,14 @@ public class Login extends BasePage {
             selectedOption.click();
             System.out.println("Selected option index: " + randomIndex);
             System.out.println("Selected option text: " + selectedText);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } else {
             System.out.println("No frequency options found!");
         }
+        Thread.sleep(3000);
+
+        driver.findElement(pinicon).click();
+        driver.findElement(By.xpath("//div[@class='MuiDialogContent-root css-3fgd3y-MuiDialogContent-root']//div[6][1]")).click();
         Thread.sleep(3000);
 
         WebElement colorInput = driver.findElement(pincolor);
@@ -219,9 +225,6 @@ public class Login extends BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", colorInput, colorValue);
         Thread.sleep(4000);
 
-        driver.findElement(pinicon).click();
-        driver.findElement(By.xpath("//div[@class='MuiDialogContent-root css-3fgd3y-MuiDialogContent-root']//div[6][1]")).click();
-        Thread.sleep(3000);
         driver.findElement(addeventBtn).click();
         Thread.sleep(3000);
     }
