@@ -15,5 +15,6 @@ public void testLogin() throws InterruptedException {
     System.out.println("Login Successful!");
     loginPage.navigateToEventPage();
     loginPage.setAddbtn();
+    loginPage.navigateTodiscoverPage();
 }
 }

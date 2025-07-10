@@ -19,13 +19,17 @@ public class BasePage {
             Map<String, Object> prefs = new HashMap<>();
             prefs.put("credentials_enable_service", false);
             prefs.put("profile.password_manager_enabled", false);
+            prefs.put("profile.default_content_setting_values.geolocation", 2);
+            prefs.put("autofill.profile_enabled", false);
+
             options.setExperimentalOption("prefs", prefs);
 
             options.addArguments("--disable-save-password-bubble");
             options.addArguments("--disable-autofill");
-            driver = new ChromeDriver(options);
-            // driver.manage().window().maximize(); // optional
 
+            options.addArguments("force-device-scale-factor=0.85");
+            driver = new ChromeDriver(options);
+            driver.manage().window().maximize();
         }
     }
 

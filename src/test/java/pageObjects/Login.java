@@ -25,8 +25,9 @@ public class Login extends BasePage {
     private final By address = By.xpath("//input[@id='location.address.addressLine1']");
     private final By city = By.xpath("//input[@id='location.address.city']");
     private final By state = By.xpath("//input[@role='combobox']");
-    private final By zipcode = By.xpath("//input[@id='location.address.zip']");
     private final By frequency = By.xpath("//div[@id='mui-component-select-frequency']");
+    private final By pincolor = By.xpath("//input[@name='pinColor']");
+    private final By pinicon = By.xpath("//button[normalize-space()='Select Pin Icon']");
     private final By addeventBtn = By.xpath("//button[normalize-space()='Add']");
 
     private final Random random = new Random();
@@ -45,6 +46,7 @@ public class Login extends BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         Thread.sleep(4000);
     }
+
     public void loginbutton() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         Thread.sleep(3000);
@@ -52,6 +54,7 @@ public class Login extends BasePage {
         WebElement loginBtnElement = wait.until(ExpectedConditions.elementToBeClickable(loginbtn));
         loginBtnElement.click();
     }
+
     public void enterEmail(String email) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
         driver.findElement(emailField).sendKeys(email);
@@ -68,12 +71,14 @@ public class Login extends BasePage {
     public boolean isLoginSuccessful() {
         return driver.getCurrentUrl().contains("https://eventpin-api.mazedigital.us/");
     }
+
     public void navigateToEventPage() throws InterruptedException {
         Thread.sleep(2000);
         driver.get("https://eventpin-api.mazedigital.us/account/events");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         Thread.sleep(1000);
     }
+
     public void setAddbtn() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(addbtn));
@@ -107,7 +112,7 @@ public class Login extends BasePage {
         WebElement okBtn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//button[normalize-space()='OK']")));
         okBtn.click();
-Thread.sleep(1000);
+        Thread.sleep(1000);
         driver.findElement(enddate).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.MuiPickersDay-root")));
         List<WebElement> endDates = driver.findElements(By.cssSelector("button.MuiPickersDay-root"));
@@ -167,14 +172,19 @@ Thread.sleep(1000);
         stateInput.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
 
-
-
-        driver.findElement(zipcode).sendKeys("11111");
-        Thread.sleep(1000);
-
+        int randomNum = (int) (Math.random() * 90000) + 10000;
+        String fiveDigit = String.valueOf(randomNum);
+        System.out.println("Generated Number: " + fiveDigit);
+        WebElement inputField = driver.findElement(By.xpath("//input[@id='location.address.zip']"));
+        inputField.clear();
+        inputField.sendKeys(fiveDigit);
+        Thread.sleep(2000);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById('location.address.zip').value='" + fiveDigit + "';");
+        js.executeScript("document.getElementById('location.address.zip').dispatchEvent(new Event('input'));");
+        Thread.sleep(4000);
 
         WebElement toggleSwitch = driver.findElement(By.xpath("//input[@name='isRecurring']"));
-
         String isChecked = toggleSwitch.getAttribute("aria-checked");
         if (!"true".equals(isChecked)) {
             toggleSwitch.click();
@@ -184,11 +194,9 @@ Thread.sleep(1000);
         WebElement freqDropdown = wait.until(ExpectedConditions.elementToBeClickable(frequency));
         freqDropdown.click();
         Thread.sleep(1000);
-
         List<WebElement> options = wait.until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//ul//li[@role='option']"))
         );
-
         if (!options.isEmpty()) {
             Random rand1 = new Random();
             int randomIndex = rand1.nextInt(options.size());
@@ -201,12 +209,24 @@ Thread.sleep(1000);
         } else {
             System.out.println("No frequency options found!");
         }
+        Thread.sleep(3000);
 
+        WebElement colorInput = driver.findElement(pincolor);
+        String colorValue = "#DB37E6";
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", colorInput);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", colorInput, colorValue);
+        Thread.sleep(4000);
+
+        driver.findElement(pinicon).click();
+        driver.findElement(By.xpath("//div[@class='MuiDialogContent-root css-3fgd3y-MuiDialogContent-root']//div[4][1]")).click();
+        Thread.sleep(3000);
         driver.findElement(addeventBtn).click();
-
-        }
-
-
+        Thread.sleep(3000);
     }
-
+    public void navigateTodiscoverPage() throws InterruptedException {
+        driver.get("https://eventpin-api.mazedigital.us/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        Thread.sleep(4000);
+    }
+}
 
