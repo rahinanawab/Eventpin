@@ -13,8 +13,8 @@ public class BaseTest {
         loginPage = new Login();
 
     }
-//    @AfterSuite
-//    public void tearDownSuite() {
-//        BasePage.quitDriver();
-//    }
+    @AfterSuite
+    public void tearDownSuite() {
+        BasePage.quitDriver();
+    }
 }
