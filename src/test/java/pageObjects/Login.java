@@ -112,7 +112,9 @@ public class Login extends BasePage {
         WebElement okBtn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//button[normalize-space()='OK']")));
         okBtn.click();
-        Thread.sleep(1000);
+//        Thread.sleep(2000);
+
+
         driver.findElement(enddate).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.MuiPickersDay-root")));
         List<WebElement> endDates = driver.findElements(By.cssSelector("button.MuiPickersDay-root"));
@@ -141,7 +143,7 @@ public class Login extends BasePage {
         WebElement okBtn1 = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//button[normalize-space()='OK']")));
         okBtn1.click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         driver.findElement(address).sendKeys(getRandomString(6));
         Thread.sleep(1000);
@@ -218,7 +220,7 @@ public class Login extends BasePage {
         Thread.sleep(4000);
 
         driver.findElement(pinicon).click();
-        driver.findElement(By.xpath("//div[@class='MuiDialogContent-root css-3fgd3y-MuiDialogContent-root']//div[4][1]")).click();
+        driver.findElement(By.xpath("//div[@class='MuiDialogContent-root css-3fgd3y-MuiDialogContent-root']//div[6][1]")).click();
         Thread.sleep(3000);
         driver.findElement(addeventBtn).click();
         Thread.sleep(3000);
