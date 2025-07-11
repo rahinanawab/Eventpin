@@ -13,8 +13,5 @@ public void testLogin() throws InterruptedException {
     loginPage.clickLogin();
     Assert.assertTrue(loginPage.isLoginSuccessful(), "Login Failed!");
     System.out.println("Login Successful!");
-    loginPage.navigateToEventPage();
-    loginPage.setAddbtn();
-    loginPage.navigateTodiscoverPage();
 }
 }
