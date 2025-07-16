@@ -8,6 +8,8 @@ public class BaseTest {
     protected Login loginPage;
     protected Event eventPage;
     protected Organization organizationPage;
+    protected OrganizationEdit organizationEditPage;
+    protected OrgEvent orgEventPage;
 
     @BeforeSuite
     public void setUp() {
@@ -15,10 +17,12 @@ public class BaseTest {
         loginPage = new Login();
         eventPage = new Event();
         organizationPage = new Organization();
+        organizationEditPage = new OrganizationEdit();
+        orgEventPage = new OrgEvent();
 
     }
-    @AfterSuite
-    public void tearDownSuite() {
-        BasePage.quitDriver();
-    }
+//    @AfterSuite
+//    public void tearDownSuite() {
+//        BasePage.quitDriver();
+//    }
 }

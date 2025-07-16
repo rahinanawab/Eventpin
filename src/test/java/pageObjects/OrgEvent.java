@@ -11,24 +11,20 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
-public class Event extends BasePage{
-
+public class OrgEvent extends BasePage{
     private final By addbtn = By.xpath("//button[normalize-space()='Add']");
     private final By name = By.xpath("//input[@id='name']");
     private final By startdate = By.xpath("(//button[@aria-label='Choose date'])[1]");
     private final By starttime = By.xpath("(//button[@aria-label='Choose time'])[1]");
     private final By enddate = By.xpath("//label[contains(text(), 'End Date')]/following::button[@aria-label='Choose date'][1]");
     private final By endtime = By.xpath("//label[contains(text(), 'End Time')]/following::button[@aria-label='Choose time'][1]");
-    private final By venue = By.xpath("(//input[@role='combobox'])[1]");
     private final By address = By.xpath("//input[@id='location.address.addressLine1']");
     private final By city = By.xpath("//input[@id='location.address.city']");
-    private final By state = By.xpath("(//input[@role='combobox'])[2]");
+    private final By state = By.xpath("//input[@role='combobox']");
     private final By frequency = By.xpath("//div[@id='mui-component-select-frequency']");
     private final By pincolor = By.xpath("//input[@name='pinColor']");
     private final By pinicon = By.xpath("//button[normalize-space()='Select Pin Icon']");
     private final By addeventBtn = By.xpath("//button[normalize-space()='Add']");
-    private final By hamburg = By.cssSelector(".MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-715at-MuiSvgIcon-root");
-    private final By event = By.xpath("//li[2]/parent::ul[@class='MuiList-root MuiList-padding css-h4y409-MuiList-root']//li[2]");
 
     private final Random random = new Random();
 
@@ -41,16 +37,9 @@ public class Event extends BasePage{
         return result.toString();
     }
     public void navigateToEventPage() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-        WebElement hamdropdown = wait.until(ExpectedConditions.presenceOfElementLocated(hamburg));
-        Thread.sleep(1000);
-        hamdropdown.click();
-        Thread.sleep(1000);
-        WebElement createevent = wait.until(ExpectedConditions.presenceOfElementLocated(event));
-        Thread.sleep(1000);
-        createevent.click();
-//        driver.get("https://eventpin-api.mazedigital.us/account/events");
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        Thread.sleep(2000);
+        driver.get("https://eventpin-api.mazedigital.us/account/events?organizationId=e15ded74-9abe-4f53-ba06-3948c0c5cfc9");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         Thread.sleep(1000);
     }
 
@@ -120,27 +109,11 @@ public class Event extends BasePage{
         okBtn1.click();
         Thread.sleep(2000);
 
-        String[] venues = {
-                "Taha VANUE 2", "org event", "test org venue", "Taha ki orgnization", "test venue"
-        };
-
-        String randomVenue = venues[random.nextInt(venues.length)];
-        WebElement venueInput = driver.findElement(venue);
-        venueInput.click();
-        Thread.sleep(500);
-        venueInput.sendKeys(randomVenue);
-        Thread.sleep(1000);
-        venueInput.sendKeys(Keys.ARROW_DOWN);
-        Thread.sleep(300);
-        venueInput.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
-
         driver.findElement(address).sendKeys(getRandomString(6));
         Thread.sleep(1000);
 
         driver.findElement(city).sendKeys(getRandomString(6));
         Thread.sleep(1000);
-
         String[] states = {
                 "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
                 "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",

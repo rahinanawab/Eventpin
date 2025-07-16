@@ -16,12 +16,12 @@ public class Login extends BasePage {
     public void navigateToLoginPage() throws InterruptedException {
         driver.get("https://eventpin-api.mazedigital.us/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-        Thread.sleep(4000);
+        Thread.sleep(5500);
     }
 
     public void loginbutton() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-        Thread.sleep(3000);
+        Thread.sleep(4000);
 
         WebElement loginBtnElement = wait.until(ExpectedConditions.elementToBeClickable(loginbtn));
         loginBtnElement.click();

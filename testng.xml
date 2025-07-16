@@ -4,8 +4,9 @@
     <test name="CompleteAppTest">
         <classes>
             <class name="TestCases.LoginTest"/>
-            <class name="TestCases.EventTest"/>
-            <class name="TestCases.OrganizationTest"/>
+<!--            <class name="TestCases.EventTest"/>-->
+<!--            <class name="TestCases.OrganizationTest"/>-->
+            <class name="TestCases.OrganizationEditTest"/>
         </classes>
     </test>
 </suite>

@@ -4,12 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.Random;
 
 public class Organization extends BasePage{
+    private final By acc = By.xpath("//div[@class='MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-t76jb0-MuiAvatar-root']");
+    private final By createOrg = By.cssSelector(".MuiBox-root.css-1ulb399");
     private final By name = By.xpath("//input[@id='name']");
     private final By email = By.xpath("//input[@id='email']");
     private final By address1 = By.xpath("//input[@id='address.addressLine1']");
@@ -36,13 +39,21 @@ public class Organization extends BasePage{
     private String getRandomEmail() {
         return getRandomString(8) + "@gmail.com";
     }
+public void account() throws InterruptedException {
+    Thread.sleep(2000);
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+    Thread.sleep(2000);
+    WebElement accdropdown = wait.until(ExpectedConditions.presenceOfElementLocated(acc));
+    Thread.sleep(1000);
+    accdropdown.click();
+    Thread.sleep(1000);
+    WebElement orgcreate = wait.until(ExpectedConditions.presenceOfElementLocated(createOrg));
+    Thread.sleep(1000);
+    orgcreate.click();
+    Thread.sleep(1000);
 
-    public void navigateToOrgPage() throws InterruptedException {
-        Thread.sleep(2000);
-        driver.get("https://eventpin-api.mazedigital.us/account/organizations/create");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-        Thread.sleep(1000);
-    }
+}
+
     public void addOrg() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         Thread.sleep(4000);
