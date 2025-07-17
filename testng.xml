@@ -6,7 +6,9 @@
             <class name="TestCases.LoginTest"/>
 <!--            <class name="TestCases.EventTest"/>-->
 <!--            <class name="TestCases.OrganizationTest"/>-->
-            <class name="TestCases.OrganizationEditTest"/>
+<!--            <class name="TestCases.OrganizationEditTest"/>-->
+<!--            <class name="TestCases.OrganizationEditVenueTest"/>-->
+            <class name="TestCases.OrgEventTest"/>
         </classes>
     </test>
 </suite>

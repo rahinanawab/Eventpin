@@ -49,8 +49,6 @@ public class Event extends BasePage{
         WebElement createevent = wait.until(ExpectedConditions.presenceOfElementLocated(event));
         Thread.sleep(1000);
         createevent.click();
-//        driver.get("https://eventpin-api.mazedigital.us/account/events");
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         Thread.sleep(1000);
     }
 

@@ -9,6 +9,7 @@ public class BaseTest {
     protected Event eventPage;
     protected Organization organizationPage;
     protected OrganizationEdit organizationEditPage;
+    protected OrganizationEditVenue organizationEditVenuePage;
     protected OrgEvent orgEventPage;
 
     @BeforeSuite
@@ -18,6 +19,8 @@ public class BaseTest {
         eventPage = new Event();
         organizationPage = new Organization();
         organizationEditPage = new OrganizationEdit();
+        organizationEditVenuePage = new OrganizationEditVenue();
+        organizationEditVenuePage = new OrganizationEditVenue();
         orgEventPage = new OrgEvent();
 
     }
